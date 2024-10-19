@@ -1,0 +1,10 @@
+INDEX VERSION 1.132+C:\Programación\Kiriko\.metadata\.plugins\org.eclipse.jdt.core
+328098809.index
+717646434.index
+812525719.index
+732924409.index
+2690852708.index
+2331724071.index
+1865797976.index
+588433392.index
+762193195.index

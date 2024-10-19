@@ -1,0 +1,11 @@
+import java.util.Scanner;
+public class Calculos_Math {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		double raiz;
+		System.out.print("Por favor introduce un numero");
+		raiz = sc.nextDouble();
+		raiz = Math.sqrt();
+		System.out.println(raiz);
+				}
+}

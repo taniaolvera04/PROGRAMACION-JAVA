@@ -1,0 +1,62 @@
+import java.util.Scanner;
+public class Hour {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int hr, mn;
+		String[]he= {"one ", "two ", "three ", "four ", "five ", "six ", "seven ", "eight ", 
+				"nine ","ten ", "eleven ", "twelve "};
+		System.out.println("Introduce hora (0 a 12)");
+		hr=sc.nextInt();
+		System.out.println("Introduce minutos (0 a 59)");
+		mn=sc.nextInt();
+		
+		switch(hr) {
+		case 1:
+		System.out.print("It's " + he[0]);
+				break;
+	    case 2:
+		System.out.print("It's " + he[1]);
+		break;
+	    case 3:
+		System.out.print("It's " + he[2]);
+		break;
+	    case 4:
+		System.out.print("It's " + he[3]);
+		break;
+	    case 5:
+		System.out.print("It's " + he[4]);
+		break;
+		case 6:
+        System.out.print("It's " + he[5]);
+	    break;
+		case 7:
+	    System.out.print("It's " + he[6]);
+		break;
+		case 8:
+	    System.out.print("It's " + he[7]);
+		break;
+		case 9:
+		System.out.print("It's " + he[8]);
+		break;
+		case 10:
+		System.out.print("It's " + he[9]);
+		break;
+		case 11:
+	     System.out.print("It's " + he[10]);
+		 break;
+		case 12:
+		System.out.print("It's " + he[11]);
+		break;	
+	}
+		if(mn<=31) {
+		switch(mn) {
+		case 1:
+			System.out.println( he[0] );
+			break;
+		}
+		case 2:
+			System.out.println( he[1] );
+			break;
+			}
+		}
+}

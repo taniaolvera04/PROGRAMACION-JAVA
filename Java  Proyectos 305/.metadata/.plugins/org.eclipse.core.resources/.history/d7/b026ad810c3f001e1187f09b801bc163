@@ -1,0 +1,12 @@
+import java.util.Scanner;
+public class Terreno {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int base;
+		int altura;
+		int area;
+		int perimetro;
+		int cerca=260;
+	}
+
+}

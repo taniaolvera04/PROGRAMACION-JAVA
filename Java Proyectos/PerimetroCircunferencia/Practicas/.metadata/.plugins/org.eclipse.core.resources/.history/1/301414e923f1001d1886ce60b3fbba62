@@ -1,0 +1,18 @@
+import javax.swing.*;
+public class Game {
+	public static void main(String[] args) {
+		int number;
+		int i;
+		int random=(int)(Math.random()*100);
+		number=Integer.parseInt(JOptionPane.showInputDialog("Introduce un número entre 1 y 100"));
+		for (i=0; i<5; i++) {
+			if (random>number) {
+				number=Integer.parseInt(JOptionPane.showInputDialog("Introduce un número más alto"));
+			}
+			else if (random<number) {
+				number=Integer.parseInt(JOptionPane.showInputDialog("Introduce un número más bajo"));
+				break;
+			}  JOptionPane.showMessageDialog(null, "Adivinaste el número en " + i + " intentos");
+		}    JOptionPane.showMessageDialog(null, "Has excedido el número de intentos");
+	}
+}

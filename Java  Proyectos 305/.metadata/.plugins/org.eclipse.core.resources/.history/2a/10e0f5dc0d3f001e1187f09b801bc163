@@ -1,0 +1,18 @@
+import java.util.Scanner;
+public class Terreno {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int base, altura, area, perimetro;
+		int cerca=260;
+		int precio=1800;
+		System.out.println("Introduce medida de base de terreno");
+		base=sc.nextInt();
+		System.out.println("Introduce medida de altura de terreno");
+		altura=sc.nextInt();
+		area=(base*altura);
+		System.out.println("El área de tu terreno es de: " + area  + " metros cuadrados");
+		System.out.println("El área de tu terreno es de: " + (base+base+altura+altura) + " metros");
+		System.out.println("El costo de tu terreno es de: " + );
+	}
+
+}

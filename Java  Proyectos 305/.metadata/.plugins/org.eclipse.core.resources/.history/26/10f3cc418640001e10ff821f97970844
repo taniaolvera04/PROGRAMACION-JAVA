@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class HrEnglish {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int hr, mn;
+		
+		String[]he= {" twelve ", " one ", " two ", " three ", " four ", " five ", " six ", " seven ", " eight ", 
+				" nine "," ten ", " eleven "};
+		
+		
+		String[]me= {" o'clock ", " thirteen ", " fourteen ", " fifteen ", " sixteen ", " seventeen ", " eighteen ", " nineteen ", 
+				" twenty ", " half past ", " quarter past ", " quarter to ", " past ", " to "};	
+		
+		
+		System.out.println("Introduce hora de 1 a 12");
+		hr=sc.nextInt();
+		System.out.println("Introduce minutos de 0 a 59");
+		mn=sc.nextInt();
+		
+		if(hr==0 || hr==12 && mn==0) {
+			System.out.println("It's " + he[0] + me[0]);
+		}
+		if(hr==0 || hr==12 && mn==1) {
+			System.out.println("It's " + he[1] + me[12] + he[0]);
+		}
+		if(hr==0 || hr==12 && mn==2) {
+			System.out.println("It's " + he[1] + me[12] + he[3]);
+		}
+	}
+
+}

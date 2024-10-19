@@ -1,0 +1,12 @@
+import java.util.Scanner;
+public class Terreno {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int base, altura, area, perimetro;
+		int cerca=260;
+		int precio=1800;
+		System.out.println("Introduce medida de base de terreno");
+		base=sc.nextInt();
+	}
+
+}

@@ -1,0 +1,4 @@
+INDEX VERSION 1.132+C:\Users\ ELEKTRA\Desktop\Java Proyectos\PerimetroCircunferencia\.metadata\.plugins\org.eclipse.jdt.core
+1858179056.index
+1197291333.index
+1865797976.index

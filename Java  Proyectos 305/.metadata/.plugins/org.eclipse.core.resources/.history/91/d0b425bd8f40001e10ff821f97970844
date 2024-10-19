@@ -1,0 +1,114 @@
+import java.util.Scanner;
+public class Hour {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int hr, mn;
+		String[]he= {"o'clock ", "one ", "two ", "three ", "four ", "five ", "six ", "seven ", "eight ", 
+				"nine ","ten ", "eleven ", "twelve ", "thirteen ", "fourtheen ", "a quarter ", "sixteen ", "seventeen ",
+				"eighteen ", "nineteen ", "twenty", "half "};
+		System.out.println("Introduce hora (0 a 12)");
+		hr=sc.nextInt();
+		System.out.println("Introduce minutos (0 a 59)");
+		mn=sc.nextInt();
+		System.out.println("It's");
+		
+		if(mn<=29) {
+		switch(mn) {
+		case 0:
+			System.out.println(he[0]);
+			break;
+		case 1:
+			System.out.println( he[1] );
+			break;
+		case 2:
+			System.out.println( he[2] );
+			break;
+		case 3:
+			System.out.println( he[3] );
+			break;
+		case 4:
+			System.out.println( he[4] );
+			break;
+		case 5:
+			System.out.println( he[5] );
+			break;
+		case 6:
+			System.out.println( he[6] );
+			break;
+		case 7:
+			System.out.println( he[7] );
+			break;
+		case 8:
+			System.out.println( he[8] );
+			break;
+		case 9:
+			System.out.println( he[9]);
+			break;
+		case 10:
+			System.out.println( he[10] );
+			break;
+		case 11:
+			System.out.println( he[11] );
+			break;
+		case 12:
+			System.out.println( he[12] );
+			break;
+		case 13:
+			System.out.println( he[13] );
+			break;
+		case 14:
+			System.out.println( he[14] );
+			break;
+		case 15:
+			System.out.println( he[15] );
+			break;
+		case 16:
+			System.out.println( he[16] );
+			break;
+		case 17:
+			System.out.println( he[17] );
+			break;
+		case 18:
+			System.out.println( he[18]);
+			break;
+}
+	}
+}
+switch(hr) {
+case 1:
+System.out.print("It's " + he[0]);
+		break;
+case 2:
+System.out.print("It's " + he[1]);
+break;
+case 3:
+System.out.print("It's " + he[2]);
+break;
+case 4:
+System.out.print("It's " + he[3]);
+break;
+case 5:
+System.out.print("It's " + he[4]);
+break;
+case 6:
+System.out.print("It's " + he[5]);
+break;
+case 7:
+System.out.print("It's " + he[6]);
+break;
+case 8:
+System.out.print("It's " + he[7]);
+break;
+case 9:
+System.out.print("It's " + he[8]);
+break;
+case 10:
+System.out.print("It's " + he[9]);
+break;
+case 11:
+ System.out.print("It's " + he[10]);
+ break;
+case 12:
+System.out.print("It's " + he[11]);
+break;	
+}

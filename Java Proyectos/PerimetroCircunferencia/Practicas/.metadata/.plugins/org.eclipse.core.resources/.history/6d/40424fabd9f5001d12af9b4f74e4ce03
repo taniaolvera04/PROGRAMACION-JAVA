@@ -1,0 +1,14 @@
+import javax.swing.JOptionPane;
+
+public class ContraseñaSwitch {
+	public static void main(String[] args) {
+		String passw="ilovebts";
+		String passw2=JOptionPane.showInputDialog("Introduce tu contraseña");
+		for (int i=1; i<3; i++) {
+		 if(passw.equals(passw2)==false) {
+			 passw2=JOptionPane.showInputDialog("Introduce tu contraseña");
+		}
+	  } JOptionPane.showMessageDialog(null, "Acceso denegado");
+	  System.out.println("Acceso permitido");
+	} 
+}

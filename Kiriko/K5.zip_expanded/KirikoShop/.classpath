@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
+	<classpathentry kind="lib" path="src/Modelo/mysql-connector-java-8.0.29.jar"/>
+	<classpathentry kind="lib" path="Desplazable.jar"/>
+	<classpathentry kind="lib" path="src/javax.activation_1.2.2.v20221203-1659.jar"/>
+	<classpathentry kind="lib" path="src/mail.jar"/>
+	<classpathentry kind="lib" path="src/itext5-itextpdf-5.5.12.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

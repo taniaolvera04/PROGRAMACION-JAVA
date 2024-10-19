@@ -1,0 +1,40 @@
+import java.util.Scanner;
+public class AngulosSwitch {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int angulo;
+		System.out.println("Introduce ángulo");
+		angulo=sc.nextInt();
+		switch(angulo) {
+		case 1:
+			 if (angulo>0 && angulo<90){
+		            System.out.println("Ángulo Agudo");
+		        }
+			 break;
+		case 2:
+			if (angulo==90){
+		        System.out.println("Ángulo Recto");
+		        }
+			break;
+		case 3:
+			 if (angulo>90 && angulo<180){
+		            System.out.println("Ángulo Obtuso");
+		        }
+			 break;
+		case 4:
+			 if (angulo==180){
+		            System.out.println("Ángulo Llano");
+		        }
+			 break;
+		case 5:
+			  if (angulo>180 && angulo<360){
+		            System.out.println("Ángulo Concavo");
+		        }
+			  break;
+		case 6:
+			if (angulo==360){
+	            System.out.println("Ángulo Completo");
+		}
+		}
+
+}

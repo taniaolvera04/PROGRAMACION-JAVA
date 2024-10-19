@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class ContraseñaSwitch {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		String passw1="ILOVEBTS";
+		String passw2=" ";
+		passw2=sc.next();
+		switch (passw1) {
+		case "1":
+			if (passw1.equals(passw2)==true) {
+				System.out.println("Acceso permitido");
+			}
+		case "2":
+			 if(passw1.equals(passw2)==false){
+				System.out.println("Acceso denegado");
+			}
+		} 
+	}
+
+}

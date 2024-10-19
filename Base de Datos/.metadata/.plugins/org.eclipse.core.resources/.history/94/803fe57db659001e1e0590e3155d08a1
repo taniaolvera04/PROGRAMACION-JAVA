@@ -1,0 +1,326 @@
+package sistema;
+
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import javax.swing.JSlider;
+import javax.swing.JButton;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+
+public class PantallaUsuario {
+	private JFrame frame;
+	private JTextField txtid;
+	private JTextField txtnom;
+	private JTextField txtape;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PantallaUsuario window = new PantallaUsuario();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+int ancho;
+int alto;
+
+
+	public PantallaUsuario() {
+		initialize();
+	}
+
+	/*
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(254, 216, 240));
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblid = new JLabel("ID");
+		lblid.setForeground(new Color(221, 4, 140));
+		lblid.setFont(new Font("BIZ UDPGothic", Font.BOLD, 14));
+		lblid.setBounds(60, 34, 18, 14);
+		frame.getContentPane().add(lblid);
+		
+		txtid = new JTextField();
+		txtid.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(txtid.getText().length()>=5) {
+					e.consume();
+				}
+				
+			}
+		});
+		txtid.setForeground(new Color(146, 4, 221));
+		txtid.setFont(new Font("BIZ UDGothic", Font.BOLD, 13));
+		txtid.setBounds(128, 32, 111, 20);
+		frame.getContentPane().add(txtid);
+		txtid.setColumns(10);
+		
+		JLabel lblnom = new JLabel("Nombre");
+		lblnom.setHorizontalAlignment(SwingConstants.CENTER);
+		lblnom.setForeground(new Color(221, 4, 140));
+		lblnom.setFont(new Font("BIZ UDPGothic", Font.BOLD, 14));
+		lblnom.setBounds(39, 78, 67, 14);
+		frame.getContentPane().add(lblnom);
+		
+		JLabel lblape = new JLabel("Apellido");
+		lblape.setHorizontalAlignment(SwingConstants.CENTER);
+		lblape.setForeground(new Color(221, 4, 140));
+		lblape.setFont(new Font("BIZ UDPGothic", Font.BOLD, 14));
+		lblape.setBounds(39, 119, 67, 14);
+		frame.getContentPane().add(lblape);
+		
+		txtnom = new JTextField();
+		txtnom.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(txtnom.getText().length()>=30) {
+					e.consume();
+				}
+			}
+		});
+		txtnom.setForeground(new Color(146, 4, 221));
+		txtnom.setFont(new Font("BIZ UDGothic", Font.BOLD, 13));
+		txtnom.setColumns(10);
+		txtnom.setBounds(128, 77, 111, 20);
+		frame.getContentPane().add(txtnom);
+		
+		txtape = new JTextField();
+		txtape.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(txtape.getText().length()>=30) {
+					e.consume();
+				}
+			}
+		});
+		txtape.setForeground(new Color(146, 4, 221));
+		txtape.setFont(new Font("BIZ UDGothic", Font.BOLD, 13));
+		txtape.setColumns(10);
+		txtape.setBounds(128, 118, 111, 20);
+		frame.getContentPane().add(txtape);
+		
+		JLabel lblmes = new JLabel("Mes");
+		lblmes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblmes.setForeground(new Color(221, 4, 140));
+		lblmes.setFont(new Font("BIZ UDPGothic", Font.BOLD, 14));
+		lblmes.setBounds(39, 168, 67, 14);
+		frame.getContentPane().add(lblmes);
+		
+		
+		
+		JLabel lblimg = new JLabel("");
+		lblimg.setBounds(62, 253, 287, 124);
+		frame.getContentPane().add(lblimg);
+		ancho=lblimg.getWidth();
+		alto=lblimg.getHeight();
+		
+		
+		JLabel lbldia = new JLabel("");
+		lbldia.setHorizontalAlignment(SwingConstants.CENTER);
+		lbldia.setForeground(new Color(146, 4, 221));
+		lbldia.setFont(new Font("BIZ UDGothic", Font.BOLD, 14));
+		lbldia.setBounds(259, 208, 67, 14);
+		frame.getContentPane().add(lbldia);
+		
+		JLabel lblsig = new JLabel("");
+		lblsig.setBounds(6, 277, 46, 14);
+		frame.getContentPane().add(lblsig);
+		frame.setBounds(100, 100, 434, 427);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		lblsig.setVisible(false);
+		
+	
+		
+		
+		
+		JComboBox cmbmes = new JComboBox();
+		cmbmes.setModel(new DefaultComboBoxModel(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}));
+		cmbmes.setSelectedIndex(0);
+		cmbmes.setForeground(new Color(146, 4, 221));
+		cmbmes.setFont(new Font("BIZ UDGothic", Font.BOLD, 14));
+		cmbmes.setBounds(128, 164, 111, 22);
+		frame.getContentPane().add(cmbmes);
+		
+		
+		JSlider sldia = new JSlider();
+		sldia.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				lbldia.setText(""+sldia.getValue());
+				String cm=(String)cmbmes.getSelectedItem();
+				if (cm=="Enero") {
+					sldia.setMaximum(31);
+					sldia.setMinimum(1);
+				} else if (cm=="Febrero") {
+					sldia.setMaximum(28);
+					sldia.setMinimum(1);
+				}  else if (cm=="Marzo") {
+					sldia.setMaximum(31);
+					sldia.setMinimum(1);
+				}  else if (cm=="Abril") {
+					sldia.setMaximum(30);
+					sldia.setMinimum(1);
+				}  else if (cm=="Mayo") {
+					sldia.setMaximum(31);
+					sldia.setMinimum(1);
+				} else if (cm=="Junio") {
+					sldia.setMaximum(30);
+					sldia.setMinimum(1);
+			}
+		});
+		sldia.setValue(1);
+		sldia.setBounds(120, 209, 129, 14);
+		frame.getContentPane().add(sldia);
+		
+		
+		
+		JLabel lbl = new JLabel("Día");
+		lbl.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl.setForeground(new Color(221, 4, 140));
+		lbl.setFont(new Font("BIZ UDPGothic", Font.BOLD, 14));
+		lbl.setBounds(39, 206, 67, 14);
+		frame.getContentPane().add(lbl);
+		
+		
+		
+		JButton btnregistrar = new JButton("Registrar");
+		btnregistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SignoUsuario su=new SignoUsuario();
+				su.setSigno(lblsig.getText());
+				su.setIdusuario(Integer.parseInt(txtid.getText()));
+				su.setNombre(txtnom.getText());
+				su.setApellido(txtape.getText());
+				su.setMes(cmbmes.getSelectedItem());
+				su.setDia(sldia.getValue());
+				
+				String mes = (String)cmbmes.getSelectedItem();
+				int sl = (Integer)sldia.getValue();
+
+				
+
+				if(mes == "Marzo" && sl>=1 || mes == "Abril" && sl<=19 && sl<=30) {
+					lblsig.setText("Aries");
+					Image foto=Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/aries.png"));
+					lblimg.setIcon(new ImageIcon(foto.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+					
+				}else if(mes == "Abril" && sl>=20 && sl<=30 || mes == "Mayo" && sl>=1 && sl<=20) {
+					Image foto=Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/tauro.png"));
+					lblimg.setIcon(new ImageIcon(foto.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+					lblsig.setText("Tauro");
+					
+				}else if(mes == "Mayo" && sl>=21 || mes == "Junio" && sl>=1 && sl<=20) {
+					Image foto=Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/geminis.png"));
+					lblimg.setIcon(new ImageIcon(foto.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+					lblsig.setText("Géminis");
+					
+				}else if(mes == "Junio" && sl>=21 && sl<=30|| mes == "Julio" && sl>=1 && sl<=22) {
+					Image foto=Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/cancer.png"));
+					lblimg.setIcon(new ImageIcon(foto.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+					lblsig.setText("Cáncer");
+					
+				}else if(mes == "Julio" && sl>=23|| mes == "Agosto" && sl>=1  && sl<=22) {
+					Image foto=Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/leo.jpeg"));
+					lblimg.setIcon(new ImageIcon(foto.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+					lblsig.setText("Leo");
+					
+				}else if(mes == "Agosto" && sl>=23 || mes == "Septiembre" && sl>=1 && sl<=22) {
+					lblsig.setText("Virgo");
+					Image foto=Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/virgo.png"));
+					lblimg.setIcon(new ImageIcon(foto.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+					
+				}else if(mes == "Septiembre" && sl>=23 && sl<=30|| mes == "Octubre"&& sl>=1 && sl<=22) {
+					Image foto=Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/libra.png"));
+					lblimg.setIcon(new ImageIcon(foto.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+					lblsig.setText("Libra");
+					
+				}else if(mes == "Octubre" && sl>=23 || mes == "Noviembre" && sl>=1 && sl<=21) {
+					lblsig.setText("Escorpio");
+					Image foto=Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/escorpio.png"));
+					lblimg.setIcon(new ImageIcon(foto.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+					
+				}else if(mes == "Noviembre" && sl>=22 && sl<=30|| mes == "Diciembre" && sl>=1 && sl<=21) {
+					lblsig.setText("Sagitario");
+					Image foto=Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/sagitario.png"));
+					lblimg.setIcon(new ImageIcon(foto.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+					
+				}else if(mes == "Diciembre" && sl>=22 || mes == "Enero" && sl>=1 && sl<=19) {
+					lblsig.setText("Capricornio");
+					Image foto=Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/capricornio.png"));
+					lblimg.setIcon(new ImageIcon(foto.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+					
+				}else if(mes == "Enero" && sl>=20 || mes == "Febrero" && sl>=1 &&  sl<=18) {
+					lblsig.setText("Acuario");
+					Image foto=Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/acuario.png"));
+					lblimg.setIcon(new ImageIcon(foto.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+					
+				}else if(mes == "Febrero" && sl>=19 && sl<=28|| mes == "Marzo" && sl>=1 && sl<=20) {
+					lblsig.setText("Piscis");
+					Image foto=Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/piscis.jpeg"));
+					lblimg.setIcon(new ImageIcon(foto.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+					
+				}
+				
+				su.setSigno(lblsig.getText());
+				
+				if(su.insertar()) {
+					JOptionPane.showMessageDialog(null, "Usuario registrado");
+				}else {
+					JOptionPane.showMessageDialog(null, "Error en el registro");	
+				}
+			}
+			
+		});
+		
+		
+		btnregistrar.setForeground(new Color(128, 0, 64));
+		btnregistrar.setFont(new Font("BIZ UDPGothic", Font.BOLD, 13));
+		btnregistrar.setBounds(284, 69, 103, 23);
+		frame.getContentPane().add(btnregistrar);
+		
+		JButton btnlimpiar = new JButton("Limpiar");
+		btnlimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					txtid.setText("");
+					txtnom.setText("");
+					txtape.setText("");
+					cmbmes.setSelectedItem("Enero");
+					sldia.setValue(1);
+					Image foto=Toolkit.getDefaultToolkit().getImage(getClass().getResource(""));
+					lblimg.setIcon(new ImageIcon(foto.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+			}
+		});
+		btnlimpiar.setForeground(new Color(128, 0, 64));
+		btnlimpiar.setFont(new Font("BIZ UDPGothic", Font.BOLD, 13));
+		btnlimpiar.setBounds(284, 140, 103, 23);
+		frame.getContentPane().add(btnlimpiar);
+		
+		
+		
+		
+	}
+}

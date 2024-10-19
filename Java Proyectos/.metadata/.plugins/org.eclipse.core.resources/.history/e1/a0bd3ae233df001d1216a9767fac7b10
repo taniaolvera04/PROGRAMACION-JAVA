@@ -1,0 +1,7 @@
+
+public class Exponente_Math {
+	public static void main(String[] args) {
+		double exp = Math.pow(3,2);
+		System.out.println(exp);
+ }
+}

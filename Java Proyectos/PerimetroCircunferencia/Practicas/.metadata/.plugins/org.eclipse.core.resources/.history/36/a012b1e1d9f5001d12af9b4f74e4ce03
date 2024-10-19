@@ -1,0 +1,13 @@
+import javax.swing.JOptionPane;
+
+public class ContraseñaSwitch {
+	public static void main(String[] args) {
+		String passw="ilovebts";
+		String passw2=" ";
+		for (int i=1; i<3; i++) {
+		  passw2=JOptionPane.showInputDialog("Introduce tu contraseña");
+		 if(passw.equals(passw2)==false) {
+		} 
+		}
+	} 
+}

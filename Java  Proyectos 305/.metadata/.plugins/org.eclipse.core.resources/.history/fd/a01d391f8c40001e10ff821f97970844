@@ -1,0 +1,21 @@
+import java.util.Scanner;
+public class Hour {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int hr, mn;
+		String[]he= {" one ", " two ", " three ", " four ", " five ", " six ", " seven ", " eight ", 
+				" nine "," ten ", " eleven ", " twelve "};
+		System.out.println("Introduce hora (0 a 12)");
+		hr=sc.nextInt();
+		System.out.println("Introduce minutos (0 a 59)");
+		mn=sc.nextInt();
+		
+		switch(hr) {
+		System.out.println("It's " + he[0]);
+			case 1:
+				System.out.print( " o'clock");
+				break;
+		}
+		
+	}
+}

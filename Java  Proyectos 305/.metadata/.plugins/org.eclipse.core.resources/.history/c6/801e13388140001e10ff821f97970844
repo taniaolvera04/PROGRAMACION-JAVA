@@ -1,0 +1,8 @@
+import java.util.Scanner;
+public class HrEnglish {
+	public static void main(String[] args) {
+		int hr, mn;
+		int[][]banco=new int[23][59];
+	}
+
+}

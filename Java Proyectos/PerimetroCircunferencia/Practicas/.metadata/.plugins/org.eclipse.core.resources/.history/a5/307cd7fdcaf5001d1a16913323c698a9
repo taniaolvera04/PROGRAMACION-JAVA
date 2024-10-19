@@ -1,0 +1,11 @@
+import javax.swing.*;
+public class Vectorial {
+	public static void main(String[] args) {
+		int num, resul;
+		for (int i=10; i<0; i--) {
+			num=Integer.parseInt(JOptionPane.showInputDialog("Numero"));
+			resul=(num*num--);
+			JOptionPane.showMessageDialog(null, "Vectorial es " + resul);
+		}
+	}
+}

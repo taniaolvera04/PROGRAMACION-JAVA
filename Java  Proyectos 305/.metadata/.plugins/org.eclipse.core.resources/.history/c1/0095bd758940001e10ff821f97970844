@@ -1,0 +1,18 @@
+import java.util.Scanner;
+public class Hour {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int hr, mn;
+		String[]he= {" twelve ", " one ", " two ", " three ", " four ", " five ", " six ", " seven ", " eight ", 
+				" nine "," ten ", " eleven "};
+		String[]me= {" o'clock ", " half past ", " quarter past ", " quarter to ", " past ", " to "};	
+
+		
+		System.out.println("Introduce hora (0 a 12)");
+		hr=sc.nextInt();
+		System.out.println("Introduce minutos (0 a 59)");
+		mn=sc.nextInt();
+		if()
+	}
+
+}

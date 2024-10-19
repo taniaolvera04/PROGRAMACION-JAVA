@@ -1,0 +1,102 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+public class Formulario1 extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField nom;
+	private JTextField ed;
+	private JTextField Saludo;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Formulario1 frame = new Formulario1();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Formulario1() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 479, 329);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(245, 214, 228));
+		panel.setBounds(0, 0, 463, 290);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		nom = new JTextField();
+		nom.setForeground(new Color(169, 112, 188));
+		nom.setBounds(241, 28, 151, 20);
+		panel.add(nom);
+		nom.setColumns(10);
+		
+		JLabel lblEd = new JLabel("Ingresa tu edad");
+		lblEd.setBounds(84, 72, 135, 20);
+		panel.add(lblEd);
+		lblEd.setForeground(new Color(145, 78, 167));
+		lblEd.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
+		lblEd.setVerticalAlignment(SwingConstants.TOP);
+		lblEd.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel lblNom_1 = new JLabel("Ingresa tu nombre");
+		lblNom_1.setVerticalAlignment(SwingConstants.TOP);
+		lblNom_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNom_1.setForeground(new Color(145, 78, 167));
+		lblNom_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
+		lblNom_1.setBounds(84, 28, 135, 20);
+		panel.add(lblNom_1);
+		
+		ed = new JTextField();
+		ed.setForeground(new Color(169, 112, 188));
+		ed.setColumns(10);
+		ed.setBounds(241, 72, 151, 20);
+		panel.add(ed);
+		
+		Saludo = new JTextField();
+		Saludo.setForeground(new Color(169, 112, 188));
+		Saludo.setColumns(10);
+		Saludo.setBounds(101, 136, 291, 56);
+		panel.add(Saludo);
+		
+		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.setBackground(new Color(85, 95, 176));
+		btnLimpiar.setForeground(new Color(64, 79, 181));
+		btnLimpiar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
+		btnLimpiar.setBounds(110, 232, 109, 23);
+		panel.add(btnLimpiar);
+		
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setForeground(new Color(64, 79, 181));
+		btnAceptar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
+		btnAceptar.setBackground(new Color(85, 95, 176));
+		btnAceptar.setBounds(275, 232, 109, 23);
+		panel.add(btnAceptar);
+	}
+}

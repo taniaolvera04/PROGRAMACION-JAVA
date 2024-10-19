@@ -1,0 +1,434 @@
+package Vista;
+import java.io.File;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+
+import javax.swing.SwingConstants;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+/**
+ *
+ * @author LCode
+ */
+public class Correo extends javax.swing.JFrame {
+
+    private static String emailFrom = "blueberrycorporation89tclr@gmail.com";
+    private static String passwordFrom = "swby xawv wanj xcua";
+    private String emailTo;
+    private String subject;
+    private String content;
+
+    private Properties mProperties;
+    private Session mSession;
+    private MimeMessage mCorreo;
+    
+    private File[] mArchivosAdjuntos;
+    private String nombres_archivos;
+    int ancho, alto;
+
+    public Correo() {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(Correo.class.getResource("/img/1697592790252.jpg")));
+    
+        initComponents();
+        mProperties = new Properties();
+        nombres_archivos = "";
+    }
+
+    private void createEmail() {
+        emailTo = txtTo.getText().trim();
+        subject = txtSubject.getText().trim();
+        content = txtContent.getText().trim();
+        
+         // Simple mail transfer protocol
+        mProperties.put("mail.smtp.host", "smtp.gmail.com");
+        mProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        mProperties.setProperty("mail.smtp.starttls.enable", "true");
+        mProperties.setProperty("mail.smtp.port", "587");
+        mProperties.setProperty("mail.smtp.user",emailFrom);
+        mProperties.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+        mProperties.setProperty("mail.smtp.auth", "true");
+        
+        mSession = Session.getDefaultInstance(mProperties);
+        
+        
+        try {
+            MimeMultipart mElementosCorreo = new MimeMultipart();
+            // Contenido del correo
+            MimeBodyPart mContenido = new MimeBodyPart();
+            mContenido.setContent(content, "text/html; charset=utf-8");
+            mElementosCorreo.addBodyPart(mContenido);
+            
+            //Agregar archivos adjuntos.
+            MimeBodyPart mAdjuntos = null;
+            for (int i = 0; i < mArchivosAdjuntos.length; i++) {
+                mAdjuntos = new MimeBodyPart();
+                mAdjuntos.setDataHandler(new DataHandler(new FileDataSource(mArchivosAdjuntos[i].getAbsolutePath())));
+                mAdjuntos.setFileName(mArchivosAdjuntos[i].getName());
+                mElementosCorreo.addBodyPart(mAdjuntos);
+            }
+            
+            mCorreo = new MimeMessage(mSession);
+            mCorreo.setFrom(new InternetAddress(emailFrom));
+            mCorreo.setRecipient(Message.RecipientType.TO, new InternetAddress(emailTo));
+            mCorreo.setSubject(subject);
+            mCorreo.setContent(mElementosCorreo);
+                     
+            
+        } catch (AddressException ex) {
+            Logger.getLogger(Correo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessagingException ex) {
+            Logger.getLogger(Correo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void sendEmail() {
+        try {
+            Transport mTransport = mSession.getTransport("smtp");
+            mTransport.connect(emailFrom, passwordFrom);
+            mTransport.sendMessage(mCorreo, mCorreo.getRecipients(Message.RecipientType.TO));
+            mTransport.close();
+            JOptionPane.showMessageDialog(null, "Correo enviado");
+            lblAdjuntos.setText("");
+            nombres_archivos = "";
+        } catch (NoSuchProviderException ex) {
+            Logger.getLogger(Correo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessagingException ex) {
+            Logger.getLogger(Correo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        panel = new javax.swing.JPanel();
+        btnSendEmail = new javax.swing.JButton();
+        btnSendEmail.setFont(new Font("Dialog", Font.BOLD, 12));
+        btnSendEmail.setForeground(Color.WHITE);
+		btnSendEmail.setBackground(new Color(121, 134, 196));
+        txtTo = new javax.swing.JTextField();
+        txtTo.setForeground(new Color(128, 128, 128));
+        txtTo.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {
+        		if(txtTo.getText().length()>=70) {
+        			e.consume();
+        		}
+        	}
+        });
+        txtTo.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        jLabel2 = new javax.swing.JLabel();
+        jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabel2.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 15));
+        jLabel3 = new javax.swing.JLabel();
+        jLabel3.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 15));
+        txtSubject = new javax.swing.JTextField();
+        txtSubject.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        txtSubject.setBackground(new Color(255, 255, 255));
+        txtSubject.setForeground(new Color(64, 0, 64));
+        txtSubject.setEnabled(false);
+        txtSubject.setEditable(false);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtContent = new javax.swing.JTextArea();
+        txtContent.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        txtContent.setForeground(new Color(255, 255, 255));
+        txtContent.setBackground(new Color(255, 255, 255));
+        txtContent.setEnabled(false);
+        txtContent.setEditable(false);
+        jLabel4 = new javax.swing.JLabel();
+        jLabel4.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 15));
+        lblAdjuntos = new javax.swing.JLabel();
+        lblAdjuntos.setHorizontalAlignment(SwingConstants.CENTER);
+        lblAdjuntos.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 12));
+        btnAdjuntos = new javax.swing.JButton();
+        btnAdjuntos.setForeground(Color.WHITE);
+		btnAdjuntos.setBackground(new Color(121, 134, 196));
+        btnAdjuntos.setFont(new Font("Dialog", Font.BOLD, 12));
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        panel.setBackground(new Color(237, 206, 251));
+        panel.setForeground(new Color(0, 128, 192));
+
+        btnSendEmail.setText("Enviar correo");
+        btnSendEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendEmailActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setForeground(new Color(0, 0, 0));
+        jLabel2.setText("Enviar a");
+
+        jLabel3.setForeground(new Color(0, 0, 0));
+        jLabel3.setText("Asunto");
+
+        txtSubject.setText("Recibo de compra ");
+
+        txtContent.setColumns(20);
+        txtContent.setRows(5);
+        txtContent.setText("¡Gracias por comprar en la Papelería \r\n       KirikoShop, vuelva pronto!");
+        jScrollPane1.setViewportView(txtContent);
+
+        jLabel4.setForeground(new Color(0, 0, 0));
+        jLabel4.setText("Contenido");
+
+        lblAdjuntos.setForeground(new Color(64, 0, 64));
+        lblAdjuntos.setText("....");
+
+        btnAdjuntos.setText("Agregar archivos adjuntos");
+        btnAdjuntos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdjuntosActionPerformed(evt);
+            }
+        });
+        
+        JPanel panel1 = new JPanel();
+        panel1.setLayout(null);
+        panel1.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), new Color(0, 0, 0), null, null));
+        panel1.setBackground(new Color(215, 224, 255));
+        
+        JLabel lblNewLabel = new JLabel("¡Envia correos a quien quieras en cualquier momento con BluCorp!");
+        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        lblNewLabel.setForeground(new Color(0, 114, 168));
+        lblNewLabel.setFont(new Font("Montserrat", Font.BOLD, 15));
+        lblNewLabel.setBounds(137, 11, 561, 19);
+        panel1.add(lblNewLabel);
+        
+        JLabel lblPapeleraKirikoshop = new JLabel("Papelería KIRIKOSHOP");
+        lblPapeleraKirikoshop.setHorizontalAlignment(SwingConstants.CENTER);
+        lblPapeleraKirikoshop.setForeground(new Color(128, 0, 128));
+        lblPapeleraKirikoshop.setFont(new Font("Montserrat", Font.BOLD, 15));
+        lblPapeleraKirikoshop.setBounds(165, 41, 506, 19);
+        panel1.add(lblPapeleraKirikoshop);
+        
+    	kiriko = new JLabel("");
+		kiriko.setBounds(10, 99, 70, 61);
+		panel.add(kiriko);
+		ancho=kiriko.getWidth();
+		alto=kiriko.getHeight();
+		Image foto3 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/1697592790252.jpg"));
+		kiriko.setIcon(new ImageIcon(foto3.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+        
+        JButton btnRegresar = new JButton("Regresar");
+        btnRegresar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		MenuD m=new MenuD();
+				m.setVisible(true);
+				dispose();
+        	}
+        });
+        btnRegresar.setForeground(Color.WHITE);
+        btnRegresar.setFont(new Font("Dialog", Font.BOLD, 12));
+        btnRegresar.setBackground(new Color(121, 134, 196));
+
+        javax.swing.GroupLayout gl_panel = new javax.swing.GroupLayout(panel);
+        gl_panel.setHorizontalGroup(
+        	gl_panel.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_panel.createSequentialGroup()
+        			.addContainerGap(37, Short.MAX_VALUE)
+        			.addComponent(kiriko, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.UNRELATED))
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+        						.addComponent(jLabel3)
+        						.addComponent(jLabel4))
+        					.addGap(12)))
+        			.addGap(27)
+        			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+        						.addComponent(txtSubject, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(txtTo, GroupLayout.PREFERRED_SIZE, 476, GroupLayout.PREFERRED_SIZE))
+        					.addGap(161))
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 363, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        					.addComponent(btnRegresar, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+        					.addGap(66))))
+        		.addComponent(panel1, GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
+        		.addGroup(gl_panel.createSequentialGroup()
+        			.addGap(344)
+        			.addComponent(btnSendEmail, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(370, Short.MAX_VALUE))
+        		.addGroup(gl_panel.createSequentialGroup()
+        			.addGap(296)
+        			.addComponent(btnAdjuntos, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(326, Short.MAX_VALUE))
+        		.addGroup(gl_panel.createSequentialGroup()
+        			.addGap(169)
+        			.addComponent(lblAdjuntos, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(208, Short.MAX_VALUE))
+        );
+        gl_panel.setVerticalGroup(
+        	gl_panel.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_panel.createSequentialGroup()
+        			.addComponent(panel1, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        			.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(txtTo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(jLabel2))
+        					.addGap(47))
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addComponent(kiriko, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
+        					.addGap(29)))
+        			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(jLabel3)
+        						.addComponent(txtSubject, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        					.addGap(38)
+        					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+        						.addComponent(jLabel4)
+        						.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
+        					.addPreferredGap(ComponentPlacement.UNRELATED)
+        					.addComponent(lblAdjuntos, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+        					.addGap(18)
+        					.addComponent(btnAdjuntos)
+        					.addGap(18)
+        					.addComponent(btnSendEmail))
+        				.addGroup(gl_panel.createSequentialGroup()
+        					.addGap(106)
+        					.addComponent(btnRegresar, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))
+        			.addGap(103))
+        );
+        
+        JLabel logo = new JLabel("");
+        logo.setBounds(773, 11, 70, 61);
+        panel1.add(logo);
+        panel.setLayout(gl_panel);
+        ancho=logo.getWidth();
+		alto=logo.getHeight();
+		Image foto = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/IMG-20230826-WA0022.jpg"));
+		logo.setIcon(new ImageIcon(foto.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH)));
+		
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        layout.setHorizontalGroup(
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addComponent(panel, GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 625, Short.MAX_VALUE)
+        			.addContainerGap())
+        );
+        getContentPane().setLayout(layout);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSendEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendEmailActionPerformed
+        createEmail();
+        sendEmail();
+    }//GEN-LAST:event_btnSendEmailActionPerformed
+
+    private void btnAdjuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdjuntosActionPerformed
+       JFileChooser chooser = new JFileChooser();
+       chooser.setMultiSelectionEnabled(true);
+       chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+       
+        if (chooser.showOpenDialog(this) != JFileChooser.CANCEL_OPTION) {
+            mArchivosAdjuntos = chooser.getSelectedFiles();
+            
+            for (File archivo : mArchivosAdjuntos) {
+                nombres_archivos += archivo.getName() + "<br>";
+            }
+            
+            lblAdjuntos.setText("<html><p>" + nombres_archivos + "</p></html>");
+        }
+    }//GEN-LAST:event_btnAdjuntosActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Correo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Correo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Correo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Correo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Correo().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdjuntos;
+    private javax.swing.JButton btnSendEmail;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel panel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAdjuntos;
+    private javax.swing.JTextArea txtContent;
+    private javax.swing.JTextField txtSubject;
+    private javax.swing.JTextField txtTo;
+    private JLabel kiriko;
+}
